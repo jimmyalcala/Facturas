@@ -13,12 +13,16 @@
    $con = mysql_connect("localhost","root","");
    if (!$con){die('ERROR DE CONEXION CON MYSQL: ' . mysql_error());}
 /* ********************************************** */
+
+
 /********* CONECTA CON LA BASE DE DATOS  **************** */
+/* AGREGAR EL NOMBRE DE LA BASE DE DATOS DE MYSQL*/
    $database = mysql_select_db("");
    if (!$database){die('ERROR CONEXION CON BD: '.mysql_error());}
 /* ********************************************** */
-/*ejecutamos la consulta, que solicita nombre, precio y existencia de la
-tabla productos */
+
+
+/*ejecutamos la consulta, que solicita las ventas */
 $sql = "SELECT v.num_ven,DATE_FORMAT(v.fec_emi, '%d/%m/%y'), c.nom_cli, c.direccion,v.tot_exe,v.bas_imp,v.tot_isv,v.bas_impr,v.tot_isvr,v.tot_ven FROM ventas v left join clientes c on v.cod_cli=c.cod_cli  WHERE fec_emi>='"
       .$_POST['fecha_desde']."' and fec_emi<='"
       .$_POST['fecha_hasta']."'";
@@ -43,7 +47,7 @@ if (! $result){
               echo "<b>Nombre Cliente :</b>".$row[2];
               echo "<br>";
               echo "<b>Dirección Cliente :</b>".$row[3];
-              
+              // Consulta que busca el detalle de la venta
               $sql2="select l.cod_art,l.des_art,l.cantidad,pre_fin,l.total from lininv l where (ori_mov='PVE' or ori_mov='VEN') and num_doc='".$row[0]."'";
               $lineas = mysql_query ($sql2);
               if ($lineas){
