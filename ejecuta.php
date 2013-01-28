@@ -10,11 +10,11 @@
 
 /******** CONECTAR CON BASE DE DATOS **************** */
 /******** Recuerda cambiar por tus datos ***********/ 
-   $con = mysql_connect("localhost","root","police");
+   $con = mysql_connect("localhost","root","");
    if (!$con){die('ERROR DE CONEXION CON MYSQL: ' . mysql_error());}
 /* ********************************************** */
 /********* CONECTA CON LA BASE DE DATOS  **************** */
-   $database = mysql_select_db("locuracastillo");
+   $database = mysql_select_db("");
    if (!$database){die('ERROR CONEXION CON BD: '.mysql_error());}
 /* ********************************************** */
 /*ejecutamos la consulta, que solicita nombre, precio y existencia de la
